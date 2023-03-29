@@ -6,7 +6,7 @@ function MovieTicketBooking() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const storedSeats = JSON.parse(localStorage.getItem('bookedSeats'));
+   const storedSeats = JSON.parse(localStorage.getItem('bookedSeats'));
    const a = localStorage.getItem("bgcolor");
    console.log(a, storedSeats )
 
@@ -54,7 +54,14 @@ function MovieTicketBooking() {
 
 
 function renderSeat(row, seat) {
-    const flattenedSeats = seats.flat();
+  let  flattenedSeats =[]
+  try{
+    flattenedSeats = seats.flat()
+  }catch(err){
+    console.log(err)
+    flattenedSeats = seats
+  }
+    
     const isBooked = flattenedSeats.find(s => s.row === row && s.seat === seat);
     const isSelected = selectedSeats.find(s => s.row === row && s.seat === seat);
     const seatColor = isBooked ? 'Sold' : isSelected ? 'Selected' : 'Available';
@@ -94,18 +101,18 @@ function renderSeat(row, seat) {
     <>
     
       <h1>Movie Seat Selection</h1>
-      <div class="container">
-    <div class="w3ls-reg">
+      <div className="container">
+    <div className="w3ls-reg">
     
-        <ul class="seat_w3ls">
-            <li class="smallBox greenBox">Sold Seats</li>
+        <ul className="seat_w3ls">
+            <li className="smallBox greenBox">Sold Seats</li>
 
-            <li class="smallBox redBox">Selected Seats</li>
+            <li className="smallBox redBox">Selected Seats</li>
 
-            <li class="smallBox emptyBox">Available Seats</li>
+            <li className="smallBox emptyBox">Available Seats</li>
         </ul>
    
-    <div class="seatStructure txt-center" style={{"overflow-x":"auto;"}}>
+    <div className="seatStructure txt-center" style={{"overflow-x":"auto;"}}>
         <table id="seatsBlock">
             <p id="notification"></p>
             <tr>
@@ -126,11 +133,11 @@ function renderSeat(row, seat) {
             {rows}
         </table>
 
-        <div class="screen">
-            <h2 class="wthree">Screen this way</h2>
+        <div className="screen">
+            <h2 className="wthree">Screen this way</h2>
         </div>
         <button onClick={handleSubmit}>Book Tickets</button>
-        <div  class="wthree" style={{"margin-top":"20px"}}>
+        <div  className="wthree" style={{"margin-top":"20px"}}>
         <button>Total Price: {totalPrice} Rs</button>
       </div>
     </div>
