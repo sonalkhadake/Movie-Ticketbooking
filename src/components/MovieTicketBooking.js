@@ -7,16 +7,13 @@ function MovieTicketBooking() {
 
   useEffect(() => {
    const storedSeats = JSON.parse(localStorage.getItem('bookedSeats'));
-   const a = localStorage.getItem("bgcolor");
-   console.log(a, storedSeats )
-
+   console.log("storeseats", storedSeats)
     if (storedSeats) {
       setSeats(storedSeats);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("bgcolor", "red");
     localStorage.setItem('bookedSeats', JSON.stringify([...seats]));
   }, [seats]);
 
@@ -54,12 +51,12 @@ function MovieTicketBooking() {
 
 
 function renderSeat(row, seat) {
-  let  flattenedSeats =[]
+  let flattenedSeats 
   try{
-    flattenedSeats = seats.flat()
+   flattenedSeats = seats.flat();
   }catch(err){
-    console.log(err)
-    flattenedSeats = seats
+    localStorage.setItem('bookedSeats', JSON.stringify([]));
+    flattenedSeats = seats.flat();
   }
     
     const isBooked = flattenedSeats.find(s => s.row === row && s.seat === seat);
