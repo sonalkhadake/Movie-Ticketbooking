@@ -133,7 +133,7 @@ function renderSeat(row, seat) {
         <div className="screen">
             <h2 className="wthree">Screen this way</h2>
         </div>
-        <button onClick={handleSubmit}>Book Tickets</button>
+        <button onClick={handleSubmit}>Confirm Booking</button>
         <div  className="wthree" style={{"margin-top":"20px"}}>
         <button>Total Price: {totalPrice} Rs</button>
       </div>
